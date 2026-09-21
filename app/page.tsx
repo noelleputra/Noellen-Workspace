@@ -1,69 +1,252 @@
-import Image from "next/image";
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Code2,
+  Mail,
+  MessageCircle,
+  Sparkles,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+const projects = [
+  {
+    number: "01",
+    title: "Lumio Finance",
+    type: "Product design · Development",
+    description: "A calmer way to understand your money, built for everyday decisions.",
+    className: "project-card-lime",
+  },
+  {
+    number: "02",
+    title: "Mori Objects",
+    type: "Brand identity · E-commerce",
+    description: "An earthy digital home for objects made to last.",
+    className: "project-card-blue",
+  },
+  {
+    number: "03",
+    title: "Cinder Studio",
+    type: "Creative direction · Web",
+    description: "A sharp, flexible system for a studio with a lot to say.",
+    className: "project-card-orange",
+  },
+];
+
+const capabilities = [
+  "Creative direction",
+  "Digital products",
+  "Visual identities",
+  "Motion systems",
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export default function Home() {
+  const prefersReducedMotion = useReducedMotion();
+  const transition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.7, ease: "easeOut" as const };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main>
+      <nav className="site-nav" aria-label="Main navigation">
+        <a className="brand-mark" href="#top" aria-label="Noel home">
+          N<span>↗</span>
+        </a>
+        <div className="hidden items-center gap-8 text-sm text-zinc-400 md:flex">
+          <a className="nav-link" href="#work">Work</a>
+          <a className="nav-link" href="#about">About</a>
+          <a className="nav-link" href="#contact">Contact</a>
+        </div>
+        <a className="availability" href="#contact">
+          <span className="availability-dot" />
+          Available for select projects
+        </a>
+      </nav>
+
+      <section id="top" className="hero-shell section-shell">
+        <div className="hero-grid">
+          <motion.div
+            className="hero-copy"
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            transition={transition}
+          >
+            <p className="eyebrow"><span>✳</span> Independent creative developer</p>
+            <h1>
+              Digital work
+              <br />
+              with <em>feeling.</em>
+            </h1>
+            <p className="hero-description">
+              I&apos;m Noel, a designer and developer creating distinctive digital
+              experiences for people and brands with something meaningful to share.
+            </p>
+            <div className="hero-actions">
+              <a href="#work">
+                <Button size="lg">
+                  Explore selected work <ArrowDown className="size-4" />
+                </Button>
+              </a>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" variant="outline">
+                    Start a conversation <ArrowUpRight className="size-4" />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Let&apos;s make something memorable.</DialogTitle>
+                    <DialogDescription>
+                      Tell me a little about what you&apos;re working on and I&apos;ll get
+                      back to you soon.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="mt-7 flex flex-col gap-3">
+                    <a className="dialog-contact-link" href="mailto:hello@noel.studio">
+                      <Mail className="size-4" /> hello@noel.studio
+                    </a>
+                    <a className="dialog-contact-link" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+                      <MessageCircle className="size-4" /> Connect on LinkedIn
+                    </a>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="hero-art"
+            initial={{ opacity: 0, scale: 0.92, rotate: -4 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ ...transition, delay: 0.15 }}
+            aria-hidden="true"
+          >
+            <div className="orb orb-large" />
+            <div className="orb orb-small" />
+            <div className="hero-art-label">Curious by nature<br />precise by craft.</div>
+            <Sparkles className="hero-sparkle" />
+          </motion.div>
+        </div>
+        <a className="scroll-cue" href="#work">
+          <span>Scroll to explore</span> <ArrowDown className="size-4" />
+        </a>
+      </section>
+
+      <section id="work" className="section-shell work-section">
+        <div className="section-heading">
+          <p className="eyebrow"><span>✳</span> Selected work</p>
+          <p className="section-note">A few things I&apos;ve helped bring to life.</p>
+        </div>
+        <div className="project-list">
+          {projects.map((project, index) => (
+            <motion.a
+              href="#contact"
+              className="project-row"
+              key={project.number}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.25 }}
+              variants={fadeUp}
+              transition={{ ...transition, delay: index * 0.08 }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <div className={`project-visual ${project.className}`}>
+                <span>{project.number}</span>
+                <ArrowUpRight className="project-arrow" />
+                <div className="project-visual-shape" />
+              </div>
+              <div className="project-info">
+                <div>
+                  <p className="project-type">{project.type}</p>
+                  <h2>{project.title}</h2>
+                  <p className="project-description">{project.description}</p>
+                </div>
+                <ArrowUpRight className="size-5 text-zinc-500 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </section>
+
+      <section id="about" className="section-shell about-section">
+        <div className="about-intro">
+          <p className="eyebrow"><span>✳</span> A little about me</p>
+          <h2>
+            I care about the
+            <br />
+            <em>details between</em>
+            <br />
+            the lines.
+          </h2>
+        </div>
+        <div className="about-body">
+          <p>
+            Good work lives somewhere between a clear idea and a beautiful
+            execution. I partner with ambitious teams to find that place,
+            bringing design, technology, and a healthy dose of curiosity to every
+            project.
           </p>
+          <div className="capability-list">
+            {capabilities.map((capability, index) => (
+              <div className="capability-item" key={capability}>
+                <span>0{index + 1}</span>
+                {capability}
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section id="contact" className="section-shell contact-section">
+        <div className="contact-mark"><Sparkles className="size-7" /></div>
+        <p className="eyebrow"><span>✳</span> Have a good one?</p>
+        <h2>Let&apos;s make<br /><em>something good.</em></h2>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button size="lg">
+              Get in touch <ArrowUpRight className="size-4" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Let&apos;s make something memorable.</DialogTitle>
+              <DialogDescription>
+                The best projects start with a simple hello.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="mt-7 flex flex-col gap-3">
+              <a className="dialog-contact-link" href="mailto:hello@noel.studio">
+                <Mail className="size-4" /> hello@noel.studio
+              </a>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </section>
+
+      <footer className="site-footer section-shell">
+        <p>© 2026 Noel. Made with intention.</p>
+        <div className="flex items-center gap-2">
+          <a className="social-link" href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub"><Code2 className="size-4" /></a>
+          <a className="social-link" href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><MessageCircle className="size-4" /></a>
+          <a className="social-link" href="https://dribbble.com" target="_blank" rel="noreferrer" aria-label="Dribbble"><BriefcaseBusiness className="size-4" /></a>
         </div>
-      </main>
-    </div>
+      </footer>
+    </main>
   );
 }
