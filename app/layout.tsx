@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Noel — Creative Developer",
+  title: "Noellx_ — Minecraft Server Specialist",
   description:
-    "Noel is an independent creative developer creating distinctive digital experiences.",
+    "Noellx_ creates custom Minecraft plugins, server configurations, immersive visuals, and pixel art.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

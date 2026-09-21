@@ -4,11 +4,14 @@ import { motion, useReducedMotion } from "motion/react";
 import {
   ArrowDown,
   ArrowUpRight,
-  BriefcaseBusiness,
+  Brush,
+  Check,
   Code2,
-  Mail,
+  Cog,
+  GitBranch,
   MessageCircle,
   Sparkles,
+  Wrench,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,36 +23,34 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-const projects = [
+const services = [
   {
     number: "01",
-    title: "Lumio Finance",
-    type: "Product design · Development",
-    description: "A calmer way to understand your money, built for everyday decisions.",
+    icon: Code2,
+    title: "Creative mechanics & custom plugins",
+    description:
+      "Lightweight to medium custom plugins tailored to imaginative ideas, custom RPG systems, and unique gameplay mechanics.",
     className: "project-card-lime",
   },
   {
     number: "02",
-    title: "Mori Objects",
-    type: "Brand identity · E-commerce",
-    description: "An earthy digital home for objects made to last.",
+    icon: Brush,
+    title: "Immersive visuals & pixel art",
+    description:
+      "Custom vanilla-style UI/GUI textures, icons, and pixel art assets that give your server a distinct visual identity.",
     className: "project-card-blue",
   },
   {
     number: "03",
-    title: "Cinder Studio",
-    type: "Creative direction · Web",
-    description: "A sharp, flexible system for a studio with a lot to say.",
+    icon: Cog,
+    title: "Server setup & configuration",
+    description:
+      "Core and custom plugin configuration, performance optimization, bug fixes, and clean configuration architecture.",
     className: "project-card-orange",
   },
 ];
 
-const capabilities = [
-  "Creative direction",
-  "Digital products",
-  "Visual identities",
-  "Motion systems",
-];
+const tools = ["Essentials", "SunLight", "LuckPerms", "MMOItems", "MythicMobs"];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -64,21 +65,6 @@ export default function Home() {
 
   return (
     <main>
-      <nav className="site-nav" aria-label="Main navigation">
-        <a className="brand-mark" href="#top" aria-label="Noel home">
-          N<span>↗</span>
-        </a>
-        <div className="hidden items-center gap-8 text-sm text-zinc-400 md:flex">
-          <a className="nav-link" href="#work">Work</a>
-          <a className="nav-link" href="#about">About</a>
-          <a className="nav-link" href="#contact">Contact</a>
-        </div>
-        <a className="availability" href="#contact">
-          <span className="availability-dot" />
-          Available for select projects
-        </a>
-      </nav>
-
       <section id="top" className="hero-shell section-shell">
         <div className="hero-grid">
           <motion.div
@@ -88,46 +74,35 @@ export default function Home() {
             variants={fadeUp}
             transition={transition}
           >
-            <p className="eyebrow"><span>✳</span> Independent creative developer</p>
+            <p className="eyebrow">
+              <span>✳</span> Noellx_ · Minecraft server specialist
+            </p>
             <h1>
-              Digital work
+              Make your server
               <br />
-              with <em>feeling.</em>
+              feel <em>alive.</em>
             </h1>
             <p className="hero-description">
-              I&apos;m Noel, a designer and developer creating distinctive digital
-              experiences for people and brands with something meaningful to share.
+              I&apos;m <strong>Noellx_</strong>, a Server Configurator, Plugin
+              Developer, and Pixel Artist passionate about highly creative,
+              immersive, and unique gameplay mechanics.
+            </p>
+            <p className="hero-description hero-description-secondary">
+              Got a bold server concept? I&apos;m expanding my professional
+              portfolio and offering my services <strong>100% free</strong> for a
+              limited time.
             </p>
             <div className="hero-actions">
-              <a href="#work">
+              <a href="#services">
                 <Button size="lg">
-                  Explore selected work <ArrowDown className="size-4" />
+                  See what I bring <ArrowDown className="size-4" />
                 </Button>
               </a>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button size="lg" variant="outline">
-                    Start a conversation <ArrowUpRight className="size-4" />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <DialogHeader>
-                    <DialogTitle>Let&apos;s make something memorable.</DialogTitle>
-                    <DialogDescription>
-                      Tell me a little about what you&apos;re working on and I&apos;ll get
-                      back to you soon.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="mt-7 flex flex-col gap-3">
-                    <a className="dialog-contact-link" href="mailto:hello@noel.studio">
-                      <Mail className="size-4" /> hello@noel.studio
-                    </a>
-                    <a className="dialog-contact-link" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-                      <MessageCircle className="size-4" /> Connect on LinkedIn
-                    </a>
-                  </div>
-                </DialogContent>
-              </Dialog>
+              <a href="https://discord.com" target="_blank" rel="noreferrer">
+                <Button size="lg" variant="outline">
+                  DM me on Discord <ArrowUpRight className="size-4" />
+                </Button>
+              </a>
             </div>
           </motion.div>
 
@@ -140,83 +115,152 @@ export default function Home() {
           >
             <div className="orb orb-large" />
             <div className="orb orb-small" />
-            <div className="hero-art-label">Curious by nature<br />precise by craft.</div>
+            <div className="hero-art-label">
+              Mechanics, visuals
+              <br />
+              &amp; clean configs.
+            </div>
             <Sparkles className="hero-sparkle" />
           </motion.div>
         </div>
-        <a className="scroll-cue" href="#work">
+        <a className="scroll-cue" href="#services">
           <span>Scroll to explore</span> <ArrowDown className="size-4" />
         </a>
       </section>
 
-      <section id="work" className="section-shell work-section">
+      <section id="services" className="section-shell work-section">
         <div className="section-heading">
-          <p className="eyebrow"><span>✳</span> Selected work</p>
-          <p className="section-note">A few things I&apos;ve helped bring to life.</p>
+          <p className="eyebrow">
+            <span>✳</span> What I bring to the table
+          </p>
+          <p className="section-note">
+            From the first wild idea to a polished, playable result.
+          </p>
         </div>
         <div className="project-list">
-          {projects.map((project, index) => (
-            <motion.a
-              href="#contact"
-              className="project-row"
-              key={project.number}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
-              variants={fadeUp}
-              transition={{ ...transition, delay: index * 0.08 }}
-            >
-              <div className={`project-visual ${project.className}`}>
-                <span>{project.number}</span>
-                <ArrowUpRight className="project-arrow" />
-                <div className="project-visual-shape" />
-              </div>
-              <div className="project-info">
-                <div>
-                  <p className="project-type">{project.type}</p>
-                  <h2>{project.title}</h2>
-                  <p className="project-description">{project.description}</p>
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.article
+                className="project-row"
+                key={service.number}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
+                variants={fadeUp}
+                transition={{ ...transition, delay: index * 0.08 }}
+              >
+                <div className={`project-visual ${service.className}`}>
+                  <span>{service.number}</span>
+                  <Icon className="service-visual-icon" />
+                  <div className="project-visual-shape" />
                 </div>
-                <ArrowUpRight className="size-5 text-zinc-500 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-              </div>
-            </motion.a>
-          ))}
+                <div className="project-info">
+                  <div>
+                    <p className="project-type">Service {service.number}</p>
+                    <h2>{service.title}</h2>
+                    <p className="project-description">{service.description}</p>
+                  </div>
+                  <Icon className="size-5 text-zinc-500" />
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
       </section>
 
-      <section id="about" className="section-shell about-section">
+      <section className="section-shell about-section">
         <div className="about-intro">
-          <p className="eyebrow"><span>✳</span> A little about me</p>
+          <p className="eyebrow">
+            <span>✳</span> Familiar with your stack
+          </p>
           <h2>
-            I care about the
+            Your idea,
             <br />
-            <em>details between</em>
-            <br />
-            the lines.
+            <em>fully working.</em>
           </h2>
         </div>
         <div className="about-body">
           <p>
-            Good work lives somewhere between a clear idea and a beautiful
-            execution. I partner with ambitious teams to find that place,
-            bringing design, technology, and a healthy dose of curiosity to every
-            project.
+            Whether you need a new mechanic built from scratch or a messy
+            server setup cleaned up, I focus on thoughtful systems that feel
+            great to play and are easy to maintain.
           </p>
           <div className="capability-list">
-            {capabilities.map((capability, index) => (
-              <div className="capability-item" key={capability}>
+            {tools.map((tool, index) => (
+              <div className="capability-item" key={tool}>
                 <span>0{index + 1}</span>
-                {capability}
+                {tool}
               </div>
             ))}
+          </div>
+          <p className="tools-note">
+            Plus custom mechanics, performance tuning, bug fixes, and more.
+          </p>
+        </div>
+      </section>
+
+      <section className="section-shell terms-section">
+        <div>
+          <p className="eyebrow">
+            <span>✳</span> The deal
+          </p>
+          <h2>
+            Good work first.
+            <br />
+            <em>Always.</em>
+          </h2>
+        </div>
+        <div className="terms-list">
+          <div className="term-item">
+            <Check className="size-5" />
+            <div>
+              <h3>100% free of charge</h3>
+              <p>
+                All I ask in return is an honest review/vouch and permission to
+                showcase the finished work in my portfolio.
+              </p>
+            </div>
+          </div>
+          <div className="term-item">
+            <Sparkles className="size-5" />
+            <div>
+              <h3>Tips are optional</h3>
+              <p>
+                Payments are never required. If you love the work and want to
+                support my creative journey, tips are always appreciated.
+              </p>
+            </div>
+          </div>
+          <div className="term-item">
+            <Wrench className="size-5" />
+            <div>
+              <h3>Limited slots</h3>
+              <p>
+                Spots are capped so every project gets the creative focus and
+                quality it deserves.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="contact" className="section-shell contact-section">
-        <div className="contact-mark"><Sparkles className="size-7" /></div>
-        <p className="eyebrow"><span>✳</span> Have a good one?</p>
-        <h2>Let&apos;s make<br /><em>something good.</em></h2>
+        <div className="contact-mark">
+          <Sparkles className="size-7" />
+        </div>
+        <p className="eyebrow">
+          <span>✳</span> Bring me your wildest idea
+        </p>
+        <h2>
+          Let&apos;s build
+          <br />
+          <em>something incredible.</em>
+        </h2>
+        <p className="contact-description">
+          Have a unique server vision or want to brainstorm fresh ideas?
+          Drop me a DM and let&apos;s make it playable.
+        </p>
         <Dialog>
           <DialogTrigger asChild>
             <Button size="lg">
@@ -225,14 +269,28 @@ export default function Home() {
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Let&apos;s make something memorable.</DialogTitle>
+              <DialogTitle>Let&apos;s build something incredible.</DialogTitle>
               <DialogDescription>
-                The best projects start with a simple hello.
+                Send me your server concept, the mechanics you&apos;re imagining,
+                or just say hello.
               </DialogDescription>
             </DialogHeader>
             <div className="mt-7 flex flex-col gap-3">
-              <a className="dialog-contact-link" href="mailto:hello@noel.studio">
-                <Mail className="size-4" /> hello@noel.studio
+              <a
+                className="dialog-contact-link"
+                href="https://discord.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MessageCircle className="size-4" /> Discord: @putraell_
+              </a>
+              <a
+                className="dialog-contact-link"
+                href="https://github.com/noelleputra?utm_source=portfolio"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GitBranch className="size-4" /> github.com/noelleputra
               </a>
             </div>
           </DialogContent>
@@ -240,11 +298,26 @@ export default function Home() {
       </section>
 
       <footer className="site-footer section-shell">
-        <p>© 2026 Noel. Made with intention.</p>
+        <p>© 2026 Noellx_. Built with intention.</p>
         <div className="flex items-center gap-2">
-          <a className="social-link" href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub"><Code2 className="size-4" /></a>
-          <a className="social-link" href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><MessageCircle className="size-4" /></a>
-          <a className="social-link" href="https://dribbble.com" target="_blank" rel="noreferrer" aria-label="Dribbble"><BriefcaseBusiness className="size-4" /></a>
+          <a
+            className="social-link"
+            href="https://discord.com"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Discord"
+          >
+            <MessageCircle className="size-4" />
+          </a>
+          <a
+            className="social-link"
+            href="https://github.com/noelleputra?utm_source=portfolio"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            <GitBranch className="size-4" />
+          </a>
         </div>
       </footer>
     </main>
