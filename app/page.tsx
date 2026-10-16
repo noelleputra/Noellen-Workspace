@@ -5,15 +5,18 @@ import {
   ArrowDown,
   ArrowUpRight,
   Brush,
+  Camera,
   Check,
   Code2,
   Cog,
   GitBranch,
   MessageCircle,
+  Music2,
   Sparkles,
   Wrench,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GitHubProfileCard } from "@/components/github-profile";
 import {
   Dialog,
   DialogContent,
@@ -52,6 +55,33 @@ const services = [
 
 const tools = ["Essentials", "SunLight", "LuckPerms", "MMOItems", "MythicMobs"];
 
+const socials = [
+  {
+    name: "Discord",
+    handle: "Join the community",
+    href: "https://discord.gg/uAtg4UG6Xw",
+    icon: MessageCircle,
+  },
+  {
+    name: "TikTok",
+    handle: "@noellenaine",
+    href: "https://www.tiktok.com/@noellenaine",
+    icon: Music2,
+  },
+  {
+    name: "Instagram",
+    handle: "@daleonelle",
+    href: "https://www.instagram.com/daleonelle/",
+    icon: Camera,
+  },
+  {
+    name: "GitHub",
+    handle: "noelleputra",
+    href: "https://github.com/noelleputra",
+    icon: GitBranch,
+  },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
@@ -64,7 +94,30 @@ export default function Home() {
     : { duration: 0.7, ease: "easeOut" as const };
 
   return (
-    <main>
+    <>
+      <header className="site-header">
+        <nav className="site-nav section-shell" aria-label="Main navigation">
+          <a className="brand-mark" href="#top" aria-label="Noellx_ home">
+            Noellx<span>_</span>
+          </a>
+          <div className="nav-links">
+            <a className="nav-link" href="#services">
+              Services
+            </a>
+            <a className="nav-link" href="#about">
+              About
+            </a>
+            <a className="nav-link" href="#github">
+              GitHub
+            </a>
+          </div>
+          <a className="nav-cta" href="#contact">
+            Let&apos;s talk <ArrowUpRight className="size-4" aria-hidden="true" />
+          </a>
+        </nav>
+      </header>
+
+      <main>
       <section id="top" className="hero-shell section-shell">
         <div className="hero-grid">
           <motion.div
@@ -79,7 +132,7 @@ export default function Home() {
             </p>
             <h1>
               Make your server
-              <br />
+              <br className="hero-title-break" />
               feel <em>alive.</em>
             </h1>
             <p className="hero-description">
@@ -93,16 +146,20 @@ export default function Home() {
               limited time.
             </p>
             <div className="hero-actions">
-              <a href="#services">
-                <Button size="lg">
+              <Button asChild size="lg">
+                <a href="#services">
                   See what I bring <ArrowDown className="size-4" />
-                </Button>
-              </a>
-              <a href="https://discord.com" target="_blank" rel="noreferrer">
-                <Button size="lg" variant="outline">
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a
+                  href="https://discord.gg/uAtg4UG6Xw"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   DM me on Discord <ArrowUpRight className="size-4" />
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
           </motion.div>
 
@@ -115,10 +172,32 @@ export default function Home() {
           >
             <div className="orb orb-large" />
             <div className="orb orb-small" />
+            <div className="world-cube world-cube-back" />
+            <div className="world-cube world-cube-front" />
+            <div className="world-panel">
+              <div className="world-panel-heading">
+                <span className="world-panel-indicator" />
+                <span>CREATIVE MODE</span>
+                <span className="world-panel-index">NOELLX_ / 01</span>
+              </div>
+              <div className="world-panel-row">
+                <span>01</span>
+                <span>Custom mechanics</span>
+                <span className="world-panel-check">+</span>
+              </div>
+              <div className="world-panel-row">
+                <span>02</span>
+                <span>Immersive visuals</span>
+                <span className="world-panel-check">+</span>
+              </div>
+              <div className="world-panel-row">
+                <span>03</span>
+                <span>Thoughtful setup</span>
+                <span className="world-panel-check">+</span>
+              </div>
+            </div>
             <div className="hero-art-label">
-              Mechanics, visuals
-              <br />
-              &amp; clean configs.
+              BUILT FOR YOUR NEXT WORLD
             </div>
             <Sparkles className="hero-sparkle" />
           </motion.div>
@@ -169,7 +248,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-shell about-section">
+      <section id="about" className="section-shell about-section">
         <div className="about-intro">
           <p className="eyebrow">
             <span>✳</span> Familiar with your stack
@@ -198,6 +277,25 @@ export default function Home() {
             Plus custom mechanics, performance tuning, bug fixes, and more.
           </p>
         </div>
+      </section>
+
+      <section id="github" className="section-shell github-section">
+        <div className="github-section-heading">
+          <div>
+            <p className="eyebrow">
+              <span>✳</span> A little more about my work
+            </p>
+            <h2>
+              Building in
+              <br />
+              <em>the open.</em>
+            </h2>
+          </div>
+          <p className="github-section-note">
+            My GitHub profile, pulled live so you can see what I&apos;m up to.
+          </p>
+        </div>
+        <GitHubProfileCard />
       </section>
 
       <section className="section-shell terms-section">
@@ -278,7 +376,7 @@ export default function Home() {
             <div className="mt-7 flex flex-col gap-3">
               <a
                 className="dialog-contact-link"
-                href="https://discord.com"
+                href="https://discord.gg/uAtg4UG6Xw"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -298,28 +396,59 @@ export default function Home() {
       </section>
 
       <footer className="site-footer section-shell">
-        <p>© 2026 Noellx_. Built with intention.</p>
-        <div className="flex items-center gap-2">
-          <a
-            className="social-link"
-            href="https://discord.com"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Discord"
-          >
-            <MessageCircle className="size-4" />
-          </a>
-          <a
-            className="social-link"
-            href="https://github.com/noelleputra?utm_source=portfolio"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
-          >
-            <GitBranch className="size-4" />
-          </a>
+        <div className="footer-main">
+          <div className="footer-brand">
+            <a className="brand-mark" href="#top" aria-label="Noellx_ home">
+              Noellx<span>_</span>
+            </a>
+            <p>
+              Custom Minecraft experiences, built with intention and a little
+              imagination.
+            </p>
+          </div>
+
+          <nav className="footer-nav" aria-label="Footer navigation">
+            <p className="footer-heading">Explore</p>
+            <a href="#services">Services</a>
+            <a href="#github">GitHub profile</a>
+            <a href="#contact">Get in touch</a>
+            <a href="#top">Back to top</a>
+          </nav>
+
+          <div className="footer-socials">
+            <p className="footer-heading">Find me around</p>
+            <div className="footer-social-list">
+              {socials.map(({ name, handle, href, icon: Icon }) => (
+                <a
+                  className="footer-social-link"
+                  href={href}
+                  key={name}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="footer-social-icon">
+                    <Icon className="size-4" aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="footer-social-name">{name}</span>
+                    <span className="footer-social-handle">{handle}</span>
+                  </span>
+                  <ArrowUpRight
+                    className="footer-social-arrow size-4"
+                    aria-hidden="true"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p>© 2026 Noellx_. Built with intention.</p>
+          <a href="#top">Made for curious minds <span>✳</span></a>
         </div>
       </footer>
     </main>
+    </>
   );
 }
